@@ -2,6 +2,7 @@ import React from "react";
 
 import DateBirthPicker from "./DateBirthPicker";
 import DateStartPicker from "./DateStartPicker";
+import SelectStates from "./SelectStates";
 
 const Form = () => {
 
@@ -21,6 +22,7 @@ const Form = () => {
 
           <label htmlFor="start-date">Start Date</label>
           <DateStartPicker/>
+         
 
 
         
@@ -33,14 +35,13 @@ const Form = () => {
 
           <label htmlFor="city">City</label>
           <input id="city" type="text" />
-
-          <label htmlFor="state">State</label>
-          <select name="state" id="state"></select>
+          <label htmlFor="states">States</label>
+          <SelectStates />
 
           <label htmlFor="zip-code">Zip Code</label>
           <input id="zip-code" type="number" />
         </fieldset>
-        <label htmlFor="department">Department</label>
+
         <select name="department" id="department">
           <option>Sales</option>
           <option>Marketing</option>

@@ -5,12 +5,14 @@ const userSlice = createSlice({
   initialState: {
     birthDate: "",
     startDate: "",
+    selectState: ""
   },
   reducers: {
     userInfos: (state, action) => {
-      const { startDate, birthDate } = action.payload;
+      const { startDate, birthDate, selectState } = action.payload;
       state.startDate = startDate;
       state.birthDate = birthDate;
+      state.selectState = selectState
     },
   },
 });
