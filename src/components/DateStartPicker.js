@@ -7,7 +7,7 @@ const DateStartPicker = () => {
 
   const dispatch = useDispatch();
 
-  const handleDateChange = (e) => {
+  const selectDate = (e) => {
     const data = {
       ...user,
       startDate: e.target.value,
@@ -15,7 +15,7 @@ const DateStartPicker = () => {
     dispatch(userInfos(data));
   };
 
-  return <input type="date" id="date" onChange={handleDateChange} />;
+  return <input type="date" id="date" onChange={selectDate} />;
 };
 
 export default DateStartPicker;

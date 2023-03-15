@@ -246,17 +246,17 @@ const SelectStates = () => {
 
   const dispatch = useDispatch();
 
-  const handleState = (e) => {
+  const selectState = (e) => {
     const data = {
       ...user,
-      selectState: e.target.value,
+      usState: e.target.value,
     };
     dispatch(userInfos(data))
   };
 
   return (
     <div className="dropdown">
-      <select className="dropdown-menu " onChange={handleState}  >
+      <select className="dropdown-menu " onChange={selectState}  >
         {states.map((state, index) => 
           <option key={index}  >
             {state.name}

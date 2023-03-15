@@ -3,16 +3,35 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
+    firstName: "",
+    lastName: "",
+
     birthDate: "",
     startDate: "",
-    selectState: ""
+    street: "",
+    city: "",
+    usState: "",
+    zipCode:  "",
+    departement: "",
+ 
+  
+
+
+   
+
   },
   reducers: {
     userInfos: (state, action) => {
-      const { startDate, birthDate, selectState } = action.payload;
+      const { startDate, birthDate, usState, departement, firstName, lastName, street, city, zipCode} = action.payload;
       state.startDate = startDate;
       state.birthDate = birthDate;
-      state.selectState = selectState
+      state.usState = usState;
+      state.departement = departement;
+      state.firstName = firstName;
+      state.lastName = lastName;
+      state.street = street;
+      state.city = city;
+      state.zipCode =  zipCode;
     },
   },
 });
