@@ -4,8 +4,11 @@ import { selectUser, userInfos } from "../feature/userSlice";
 
 import DateBirthPicker from "./DateBirthPicker";
 import DateStartPicker from "./DateStartPicker";
+
 import SelectDepartements from "./SelectDepartements";
 import SelectStates from "./SelectStates";
+
+import { openModal } from "../feature/modalSlice";
 
 const Form = () => {
 
@@ -30,6 +33,7 @@ const Form = () => {
       zipCode:  zipCodeInput.current.value,
     };
     dispatch(userInfos(data));
+    dispatch(openModal());
   };
 
   return (
@@ -69,6 +73,7 @@ const Form = () => {
         <SelectDepartements /> 
       </div>
       <button onClick={() => saveEmployee()}>Save</button>
+   
     </div>
   );
 };
