@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const userSlice = createSlice({
+
+
+export const userSlice = createSlice({
   name: "user",
-  initialState: {
+  initialState : {
     firstName: "",
     lastName: "",
-
     birthDate: "",
     startDate: "",
     street: "",
@@ -13,15 +14,10 @@ const userSlice = createSlice({
     usState: "",
     zipCode:  "",
     departement: "",
- 
-  
-
-
-   
-
   },
   reducers: {
     userInfos: (state, action) => {
+
       const { startDate, birthDate, usState, departement, firstName, lastName, street, city, zipCode} = action.payload;
       state.startDate = startDate;
       state.birthDate = birthDate;
@@ -38,5 +34,6 @@ const userSlice = createSlice({
 
 export const { userInfos } = userSlice.actions;
 export const selectUser = (state) => state.user;
+
 
 export default userSlice.reducer;
