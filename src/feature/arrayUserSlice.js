@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  arrayUser: [],
+    userArray: [],
   
 };
 
-export const arrayUserSlice = createSlice({
+export const userArraySlice = createSlice({
   name: "array",
   initialState,
   reducers: {
     arrayInfos: (state, action) => {
-      state.arrayUser = [...state.arrayUser, action.payload];
+      state.userArray = [...state.userArray, action.payload];
     },
   },
 });
 
-export const { arrayInfos } = arrayUserSlice.actions;
-export const selectArrayUser = (state) => state.array;
+export const { arrayInfos } = userArraySlice.actions;
+export const selectUserArray = (state) => state.array;
 
-export default arrayUserSlice.reducer;
+export default userArraySlice.reducer;

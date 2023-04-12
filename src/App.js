@@ -8,6 +8,7 @@ import ListEmployee from "./pages/ListEmployee";
 import "./styles/index.css";
 import "./styles/dropdown.css"
 import "./styles/modal.css"
+import "./styles/table.css"
 
 function App() {
   return (

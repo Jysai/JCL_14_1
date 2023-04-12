@@ -1,0 +1,55 @@
+table{
+    border-collapse: collapse;
+    width: 100%;
+    
+  }
+  
+  .tr-table:nth-child(even) {
+    
+    background-color: #f9f9f9;
+  
+  }
+  
+  table thead th{
+    padding: 10px 18px;
+      border-bottom: 1px solid #111;
+  }
+  .td-table{
+    border-bottom: 1px solid #ddd;
+    padding: 8px 10px;
+  }
+  
+  .tr-table:last-child {
+    
+    border-bottom: none ;
+  
+  }
+  .tr-table{
+   
+    padding: 8px 10px;
+    
+  }
+  
+  
+  
+  
+  .show-entries{
+    display: flex;
+    flex-direction: row;
+    height: 24px;
+    align-items: center;
+  }
+  
+  .input-search-table{
+    display: flex;
+    flex-direction: row;
+    height: 24px;
+    align-items: center;
+  }
+  
+  .header-table, .footer-table{
+    display: flex;
+    justify-content: space-between;
+    width: 920px;
+  }
+  
