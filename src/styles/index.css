@@ -22,3 +22,9 @@ label {
   margin-top: 10px;
 }
 
+.footer-table{
+  display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+

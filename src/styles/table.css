@@ -47,7 +47,7 @@ table{
     align-items: center;
   }
   
-  .header-table, .footer-table{
+  .header-table{
     display: flex;
     justify-content: space-between;
     width: 920px;

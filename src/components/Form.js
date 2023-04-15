@@ -1,6 +1,6 @@
 import {React, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser, userInfos, } from "../feature/userSlice";
+import { selectUser } from "../feature/userSlice";
 import { arrayInfos } from "../feature/arrayUserSlice";
 import DateBirthPicker from "./DateBirthPicker";
 import DateStartPicker from "./DateStartPicker";
@@ -23,8 +23,6 @@ const Form = () => {
 
   const dispatch = useDispatch()
 
-  const arr = []
-
   const saveEmployee = () => {
 
  
@@ -38,10 +36,8 @@ const Form = () => {
     };
  
     dispatch(openModal());
-    // dispatch(userInfos(data));
     dispatch(arrayInfos(data));
 
- 
   };
 
 
