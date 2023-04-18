@@ -8,14 +8,17 @@ const DateBirthPicker = () => {
   const dispatch = useDispatch();
 
   const selectDate = (e) => {
+
+    const selectDate = new Date(e.target.value).toLocaleDateString("fr")
+ 
     const data = {
       ...user,
-      birthDate: e.target.value,
+      birthDate: selectDate
     };
     dispatch(userInfos(data));
   };
 
-  return <input type="date" id="date" onChange={selectDate} />;
+  return <input type="date" id="date" timezone="[[timezone]]" onChange={selectDate} />;
 };
 
 export default DateBirthPicker;

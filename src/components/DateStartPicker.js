@@ -7,10 +7,17 @@ const DateStartPicker = () => {
 
   const dispatch = useDispatch();
 
+  
+
   const selectDate = (e) => {
+    
+    const selectDate = new Date(e.target.value).toLocaleDateString("fr")
+ 
+  
+
     const data = {
       ...user,
-      startDate: e.target.value,
+      startDate: selectDate
     };
     dispatch(userInfos(data));
   };

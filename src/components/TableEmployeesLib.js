@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useTable, usePagination, useSortBy } from "react-table";
 import { useSelector } from "react-redux";
 import { selectUserArray } from "../feature/arrayUserSlice";
+
+
 
 // import makeData from "./makeData";
 
@@ -30,22 +32,15 @@ const Styles = styled.div`
   }
 `;
 
-// Let's add a fetchData method to our Table component that will be used to fetch
-// new data when pagination state changes
-// We can also add a loading state to let our table know it's loading new data
-function Table({
-  columns,
-  data,
-  fetchData,
-  loading,
-  pageCount: controlledPageCount,
-}) {
+
+function Table({ columns, data }) {
+
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    page,
+    page, 
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -54,104 +49,97 @@ function Table({
     nextPage,
     previousPage,
     setPageSize,
-    // Get the state from the instance
-    state: { pageIndex, pageSize },
+    state: {
+      pageIndex,
+      pageSize,
+    },
   } = useTable(
     {
       columns,
       data,
-      initialState: { pageIndex: 0 }, // Pass our hoisted table state
-      manualPagination: true, // Tell the usePagination
-      // hook that we'll handle our own data fetching
-      // This means we'll also have to provide our own
-      // pageCount.
-      pageCount: controlledPageCount,
+    
+      
+      disableMultiSort: true,
     },
+
     useSortBy,
     usePagination
-    
   );
 
-  // Listen for changes in pagination and use the state to fetch our new data
-  React.useEffect(() => {
-    fetchData({ pageIndex, pageSize });
-  }, [fetchData, pageIndex, pageSize]);
-
-  // Render the UI for your table
   return (
+
     <>
-       <span>
-          Show:
-          
-        </span>{" "}
-        <select
+    
+    <div><p>Show</p>
+       {" "}
+       <select
           value={pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value));
           }}
-        > 
+        >
+          
           {[10, 20, 50, 100].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
-              {pageSize}
+               {pageSize}
             </option>
           ))}
-        </select>{" "}
-        <span>
-          Entries
-          
-        </span>
+        </select>
+        {" "}
+        <p>Entries</p></div>
+     
       <table {...getTableProps()}>
+        
         <thead>
-          
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
-                  <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? " 🔽"
-                        : " 🔼"
-                      : ""}
-                  </span>
+                <th {...column.getHeaderProps()}>
+                  <div>
+                    <span {...column.getSortByToggleProps()}>
+                      {column.render("Header")}
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? " 🔽"
+                          : " 🔼"
+                        : ""}
+                    </span>
+                  </div>
+          
                 </th>
               ))}
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
+          {page.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <td {...cell.getCellProps()}>
+                      {
+                        cell.render("Cell")
+                      }
+                    </td>
                   );
                 })}
               </tr>
             );
           })}
-          
         </tbody>
       </table>
-      {/* 
-        Pagination can be built however you'd like. 
-        This is just a very basic UI implementation:
-      */}
-      <div className="footer-table">
-      <span>{loading ? (
-              // Use our custom loading state to show a loading indicator
-              <span colSpan="10000">Loading...</span>
-            ) : (
-              <span colSpan="10000">
-                Showing {page.length} of ~{controlledPageCount * pageSize}{" "}
-                results
-              </span>
-            )}</span>
-            <span>
-          | Go to page:{" "}
+
+      <div className="pagination">
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {"<<"}
+        </button>{" "}
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {"<"}
+        </button>
+        <span>{" "}
+          Go to page:{" "}
           <input
             type="number"
             defaultValue={pageIndex + 1}
@@ -161,13 +149,14 @@ function Table({
             }}
             style={{ width: "100px" }}
           />
-        </span>{" "}
-      <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>{" "}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {"<"}
+        </span>
+        {" "}
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {">"}
+        </button>
+        {" "}
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {">>"}
         </button>{" "}
         <span>
           Page{" "}
@@ -175,26 +164,39 @@ function Table({
             {pageIndex + 1} of {pageOptions.length}
           </strong>{" "}
         </span>
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {">"}
-        </button>{" "}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
-        </button>{" "}
-        
-        </div>
+     
+
       </div>
     </>
   );
 }
 
-// Let's simulate a large dataset on the server (outside of our component)
-// const serverData = makeData(100);
-// console.log(serverData);
-
 
 function TableEmployeesLib() {
-    const ArrayUserSelector = useSelector(selectUserArray)
+
+  const ArrayUserSelector = useSelector(selectUserArray)
+
+  const inputEl = useRef();
+  const [text, setText] = useState("")
+ 
+  const onChange = e => setText(inputEl.current.value);
+  const arrayFilters = [];
+
+  ArrayUserSelector.userArray.forEach((element) => {
+    if (
+      element.firstName.toLowerCase().match(text.toLowerCase()) ||
+      element.lastName.toLowerCase().match(text.toLowerCase()) ||
+      element.startDate.toLowerCase().match(text.toLowerCase()) ||
+      element.departement.toLowerCase().match(text.toLowerCase()) ||
+      element.birthDate.toLowerCase().match(text.toLowerCase()) ||
+      element.street.toLowerCase().match(text.toLowerCase()) ||
+      element.city.toLowerCase().match(text.toLowerCase()) ||
+      element.usState.toLowerCase().match(text.toLowerCase()) ||
+      element.zipCode.toLowerCase().match(text.toLowerCase()) 
+    ) {
+      arrayFilters.push(element);
+    }
+  })
     
   const columns = React.useMemo(
     () => [
@@ -238,51 +240,24 @@ function TableEmployeesLib() {
     []
   );
 
-  // We'll start our table without any data
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [pageCount, setPageCount] = React.useState(0);
-  const fetchIdRef = React.useRef(0);
-
-  const fetchData = React.useCallback(({ pageSize, pageIndex }) => {
-    // This will get called when the table needs new data
-    // You could fetch your data from literally anywhere,
-    // even a server. But for this example, we'll just fake it.
-
-    // Give this fetch an ID
-    const fetchId = ++fetchIdRef.current;
-
-    // Set the loading state
-    setLoading(true);
-
-    // We'll even set a delay to simulate a server here
-    setTimeout(() => {
-      // Only update the data if this is the latest fetch
-      if (fetchId === fetchIdRef.current) {
-        const startRow = pageSize * pageIndex;
-        const endRow = startRow + pageSize;
-        setData(ArrayUserSelector.userArray.slice(startRow, endRow));
-
-        // Your server could send back total page count.
-        // For now we'll just fake it, too
-        setPageCount(Math.ceil(ArrayUserSelector.userArray.length / pageSize));
-
-        setLoading(false);
-      }
-    }, 1000);
-  }, []);
-
   return (
-    <Styles>
-      
+    <>
+    <div className="input-search-table">
+          <p>Search:</p>
+          <input ref={inputEl} onChange={onChange}></input>
+        </div>
+     <Styles>
+      {console.log(arrayFilters.length)}
       <Table
         columns={columns}
-        data={data}
-        fetchData={fetchData}
-        loading={loading}
-        pageCount={pageCount}
+        data={arrayFilters }
+        // fetchData={fetchData}
+   
+   
       />
     </Styles>
+    </>
+   
   );
 }
 
