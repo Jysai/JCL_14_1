@@ -2,6 +2,8 @@ import React from "react";
 import Form from "../components/Form";
 import { Link } from "react-router-dom";
 import Modal from "../components/Modal";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTableColumns } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
   return (
@@ -12,9 +14,9 @@ const Home = () => {
       </div>
       <div className="container">
         <Link className="main-nav-logo" to="/list">
-          View Current Employees
+        <FontAwesomeIcon icon={faTableColumns} /> <p className="p-main-nav"> View Current Employees</p>
         </Link>
-        <h2>Create Employee</h2>
+       
 
         <Form />
       </div>

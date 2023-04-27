@@ -4,23 +4,26 @@ import { Link } from "react-router-dom";
 
 import TableEmployees from "../components/TableEmployees";
 import TableEmployeesLib from "../components/TableEmployeesLib";
-
+ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 const ListEmployee = () => {
 
 
   
 
   return (
-    <div id="employee-div" className="container">
-      <h1>Current Employees</h1>
+  <>
+      <div className="title"><h1  >Current Employees</h1></div>
+      <div id="employee-div" className="container container-table">
       {/* <TableEmployees/> */}
       <TableEmployeesLib/>
-
-      <Link className="main-nav-logo" to="/">
-        Home
+        
+      <Link className="main-nav-logo" to="/" >
+         <FontAwesomeIcon icon={faHome} /> <p className="p-main-nav">Home</p>   
       </Link>
   
     </div>
+    </>
   );
 };
 

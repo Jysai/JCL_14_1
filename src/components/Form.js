@@ -45,15 +45,16 @@ const Form = () => {
  
 
   return (
-    <div>
+    <div className="wrap-form">
       
       <div>
+      <h2>Create Employee</h2>
         <div className="information">
-          <label htmlFor="first-name">First Name</label>
-          <input ref={firstNameInput} type="text" id="first-name" />
+          <label htmlFor="first-name" className="">First Name</label>
+          <input ref={firstNameInput} type="text" id="first-name" className="field-user" />
 
           <label htmlFor="last-name">Last Name</label>
-          <input ref={lastNameInput} type="text" id="last-name" />
+          <input ref={lastNameInput} type="text" id="last-name" className="field-user" />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
           <DateBirthPicker />
@@ -62,26 +63,29 @@ const Form = () => {
           <DateStartPicker/>
         
         </div>
-        <fieldset className="address">
+        <fieldset className="address" >
           <legend>Address</legend>
 
           <label htmlFor="street">Street</label>
-          <input ref={streetInput} id="street" type="text" />
+          <input ref={streetInput} id="street" type="text" className="field-user"  />
 
           <label htmlFor="city">City</label>
-          <input ref={cityInput} id="city" type="text" />
+          <input ref={cityInput} id="city" type="text" className="field-user"  />
           <label htmlFor="states">States</label>
           <SelectStates />
 
           <label htmlFor="zip-code">Zip Code</label>
-          <input ref={zipCodeInput} id="zip-code" type="number" />
+          <input ref={zipCodeInput} id="zip-code" type="number" className="field-user"  />
         </fieldset>
         <label htmlFor="department">Department</label>
      
         <SelectDepartements /> 
       </div>
-      <button onClick={() => saveEmployee()}>Save</button>
+      <div className="wrap-button">
+      <button onClick={() => saveEmployee()} className="button-save">Save</button>
    
+      </div>
+      
     </div>
   );
 };

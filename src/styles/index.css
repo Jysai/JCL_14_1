@@ -1,15 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+
+body{
+  /* display: flex;
+  
+  justify-content: center; 
+  align-items: center;  
+  background: rgb(79, 9, 133); */
+  background: linear-gradient(90deg, rgb(79, 9, 133) 0%, rgba(0,204,255,1) 100%); 
+  margin: -8px;
+}
+
+.wrap-form{
+  width: 450px;
+  /* text-align: center; */
+  background: white;
+  /* border-radius: 35px; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 5px;
+  border-radius: 5px
+}
+
+.field-user{
+  height: 25px;
+width: 80%;
+outline: none;
+border-radius: 5px;
+border: 1px solid gray ;
+padding-left: 15px;
+
+border-bottom-width: 2px;
+transition: all 0.3s ease;
+}
+
+.field-user:focus{
+  border-color: rgb(68, 29, 161)
+}
+
+.wrap-button{  
+  height: 45px;
+  margin: 25px 0;
+}
+
+.button-save{
+  height: 100%;
+  width: 250px;
+  outline: none;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 5px;
+  background: rgb(143,0,255);
+  background: linear-gradient(90deg, rgba(143,0,255,1) 0%, rgba(0,204,255,1) 100%); 
+  transition: all 0.3s ease;
+}
+
+.button-save:hover{
+  cursor: pointer;
+  background: rgb(143,0,255);
+  background: linear-gradient(-90deg, rgba(143,0,255,1) 0%, rgba(0,204,255,1) 100%); 
+}
+
+
 .title {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: white;
+  text-align: center;
+  height: 60px;
+  box-shadow: 0px 5px 5px #343434;
 }
 
 
 .container {
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 588px;
+  background: rgba(0,0,0,0.5);
+  margin: 0 auto;
+  /* padding-top: 22px; */
+  margin-top: 8px;
+  border-radius: 5px;
+  border: solid 1px #000000;
+
+}
+
+.container-table{
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 1050px;
+  background: rgba(0,0,0,0.5);
+  margin: 0 auto;
+  /* padding-top: 22px; */
+  margin-top: 8px;
+  border-radius: 5px;
+  border: solid 1px #000000;
 }
 
 label {
@@ -20,6 +121,9 @@ label {
 
 .address {
   margin-top: 10px;
+  min-width: 250px;
+  border-radius: 15px;
+  border-color: rgb(68, 29, 161)
 }
 
 .footer-table{

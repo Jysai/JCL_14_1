@@ -4,10 +4,6 @@ import { useTable, usePagination, useSortBy } from "react-table";
 import { useSelector } from "react-redux";
 import { selectUserArray } from "../feature/arrayUserSlice";
 
-
-
-// import makeData from "./makeData";
-
 const Styles = styled.div`
   padding: 1rem;
 
@@ -32,15 +28,13 @@ const Styles = styled.div`
   }
 `;
 
-
 function Table({ columns, data }) {
-
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    page, 
+    page,
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -49,16 +43,12 @@ function Table({ columns, data }) {
     nextPage,
     previousPage,
     setPageSize,
-    state: {
-      pageIndex,
-      pageSize,
-    },
+    state: { pageIndex, pageSize },
   } = useTable(
     {
       columns,
       data,
-    
-      
+
       disableMultiSort: true,
     },
 
@@ -67,29 +57,58 @@ function Table({ columns, data }) {
   );
 
   return (
-
     <>
-    
-    <div><p>Show</p>
-       {" "}
-       <select
+      <div className="wrap-show-entries">
+        <p>Show</p>{" "}
+        <select
           value={pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value));
           }}
         >
-          
           {[10, 20, 50, 100].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
-               {pageSize}
+              {pageSize}
             </option>
           ))}
-        </select>
-        {" "}
-        <p>Entries</p></div>
-     
+        </select>{" "}
+        <p>Entries</p>
+        <div className="pagination">
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {"<<"}
+        </button>{" "}
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {"<"}
+        </button>
+        <span>
+          {" "}
+          Go to page:{" "}
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={(e) => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0;
+              gotoPage(page);
+            }}
+            style={{ width: "100px" }}
+          />
+        </span>{" "}
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {">"}
+        </button>{" "}
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {">>"}
+        </button>{" "}
+        <span>
+          Page{" "}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{" "}
+        </span>
+      </div>
+      </div>
+
       <table {...getTableProps()}>
-        
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -105,7 +124,6 @@ function Table({ columns, data }) {
                         : ""}
                     </span>
                   </div>
-          
                 </th>
               ))}
             </tr>
@@ -118,11 +136,7 @@ function Table({ columns, data }) {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()}>
-                      {
-                        cell.render("Cell")
-                      }
-                    </td>
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                   );
                 })}
               </tr>
@@ -131,14 +145,15 @@ function Table({ columns, data }) {
         </tbody>
       </table>
 
-      <div className="pagination">
+      {/* <div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {"<<"}
         </button>{" "}
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
           {"<"}
         </button>
-        <span>{" "}
+        <span>
+          {" "}
           Go to page:{" "}
           <input
             type="number"
@@ -149,12 +164,10 @@ function Table({ columns, data }) {
             }}
             style={{ width: "100px" }}
           />
-        </span>
-        {" "}
+        </span>{" "}
         <button onClick={() => nextPage()} disabled={!canNextPage}>
           {">"}
-        </button>
-        {" "}
+        </button>{" "}
         <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
           {">>"}
         </button>{" "}
@@ -164,22 +177,18 @@ function Table({ columns, data }) {
             {pageIndex + 1} of {pageOptions.length}
           </strong>{" "}
         </span>
-     
-
-      </div>
+      </div> */}
     </>
   );
 }
 
-
 function TableEmployeesLib() {
-
-  const ArrayUserSelector = useSelector(selectUserArray)
+  const ArrayUserSelector = useSelector(selectUserArray);
 
   const inputEl = useRef();
-  const [text, setText] = useState("")
- 
-  const onChange = e => setText(inputEl.current.value);
+  const [text, setText] = useState("");
+
+  const onChange = (e) => setText(inputEl.current.value);
   const arrayFilters = [];
 
   ArrayUserSelector.userArray.forEach((element) => {
@@ -192,12 +201,12 @@ function TableEmployeesLib() {
       element.street.toLowerCase().match(text.toLowerCase()) ||
       element.city.toLowerCase().match(text.toLowerCase()) ||
       element.usState.toLowerCase().match(text.toLowerCase()) ||
-      element.zipCode.toLowerCase().match(text.toLowerCase()) 
+      element.zipCode.toLowerCase().match(text.toLowerCase())
     ) {
       arrayFilters.push(element);
     }
-  })
-    
+  });
+
   const columns = React.useMemo(
     () => [
       {
@@ -241,23 +250,25 @@ function TableEmployeesLib() {
   );
 
   return (
+    
+    ArrayUserSelector.userArray.length === 0  ? <p className="wrap-no-user">No user in database</p> : 
     <>
     <div className="input-search-table">
-          <p>Search:</p>
-          <input ref={inputEl} onChange={onChange}></input>
-        </div>
-     <Styles>
-      {console.log(arrayFilters.length)}
-      <Table
-        columns={columns}
-        data={arrayFilters }
-        // fetchData={fetchData}
-   
-   
-      />
-    </Styles>
+    <p className="search-table">Search:</p>
+    <input ref={inputEl} onChange={onChange}></input>
+  </div>
+      <div className="wrap-table">
+     
+      <Styles>
+         {arrayFilters.length === 0 ? <p className="wrap-no-user">No match</p> : 
+        <Table
+          columns={columns}
+          data={arrayFilters}
+          // fetchData={fetchData}
+        />}
+      </Styles>
+    </div>
     </>
-   
   );
 }
 
