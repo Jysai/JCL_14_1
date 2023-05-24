@@ -17,7 +17,7 @@ node --version
 
 ### Frontend
 
-1. Open your terminal, go to frontend
+1. Open your terminal
 
 # Install dependencies
 npm install
