@@ -2,6 +2,8 @@
   background: white;
   /* border-radius: 33px; */
   /* position: relative; */
+  border-radius: 5px;
+  padding: 5px;
 }
 .wrap-show-entries{
   display: flex;
@@ -103,3 +105,21 @@ table{
     margin-top: 18px;
   }
   
+  .result-table{
+    text-align: center;
+  }
+
+  .dropdown-entries{
+    display: flex;
+
+    align-items: center;
+    margin-left: 8px;
+  }
+
+  .wrap-no-user
+{
+  padding: 5px;
+  background-color: white;
+  border-radius: 5px;
+  }
+

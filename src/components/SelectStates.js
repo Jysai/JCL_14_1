@@ -257,8 +257,15 @@ const SelectStates = () => {
   return (
     <div className="dropdown">
       <select className="dropdown-menu " onChange={selectState}  >
-        {states.map((state, index) => 
-          <option key={index}  >
+    
+
+
+      <option hidden>Please select</option>
+          
+
+          {states.length > 0 &&
+              states.map((state, index) =>  
+              <option key={index}  >
             {state.name}
           </option>
         )}

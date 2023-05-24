@@ -7,9 +7,8 @@ import DateStartPicker from "./DateStartPicker";
 
 import SelectDepartements from "./SelectDepartements";
 import SelectStates from "./SelectStates";
-
 import { openModal } from "../feature/modalSlice";
-
+import { DatePicker } from "@jysai/datepicker"
 
 const Form = () => {
 
@@ -37,12 +36,8 @@ const Form = () => {
  
     dispatch(openModal());
     dispatch(arrayInfos(data));
-
   };
 
-
-
- 
 
   return (
     <div className="wrap-form">
@@ -56,11 +51,9 @@ const Form = () => {
           <label htmlFor="last-name">Last Name</label>
           <input ref={lastNameInput} type="text" id="last-name" className="field-user" />
 
-          <label htmlFor="date-of-birth">Date of Birth</label>
           <DateBirthPicker />
-
-          <label htmlFor="start-date">Start Date</label>
           <DateStartPicker/>
+          {/* <DatePicker/> */}
         
         </div>
         <fieldset className="address" >

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal, selectModal } from "../feature/modalSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

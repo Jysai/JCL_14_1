@@ -5,7 +5,6 @@
   font-weight: 400;
 }
 
-
 body{
   /* display: flex;
   
@@ -132,3 +131,17 @@ label {
     justify-content: space-between
 }
 
+.date-of-birth, .start-date{
+  display: flex;
+  flex-direction: column;
+
+  width: 280px;
+  align-items: center;
+}
+
+.wrap-no-user{
+  padding: 7px;
+  background-color: white;
+  border-radius: 5px;
+  text-align: center;
+}

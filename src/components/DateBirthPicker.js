@@ -18,7 +18,7 @@ const DateBirthPicker = () => {
     dispatch(userInfos(data));
   };
 
-  return <input type="date" id="date" timezone="[[timezone]]" onChange={selectDate} />;
+  return  <label htmlFor="date-of-birth" className="date-of-birth">Date of Birth<input type="date" id="dateBirth"  onChange={selectDate} /></label>;
 };
 
 export default DateBirthPicker;

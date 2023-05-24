@@ -2,9 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, userInfos } from '../feature/userSlice';
 
-
-
-
 const SelectDepartements = () => {
 
   const departments = [
@@ -30,11 +27,17 @@ const SelectDepartements = () => {
 
     return (
         <div className="dropdown">
-        <select className="dropdown-menu " onChange={SelectDepartement}  >
-          {departments.map((departement, index) =>  
-            <option key={index}  >
-              {departement}
-            </option>
+        <select className="dropdown-menu " onChange={SelectDepartement}   >
+        <option hidden>Please select</option>
+          
+
+            {departments.length > 0 &&
+                departments.map((departement, index) =>  
+                <option key={index}  >
+                  {departement}
+                  
+                </option>
+              
           )}
         </select>
       </div>

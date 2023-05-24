@@ -11,15 +11,11 @@ const Styles = styled.div`
     border-spacing: 0;
     width: 100%;
 
-    
-
     tr:nth-child(even) {
     
         background-color: #f9f9f9;
-      
       }
-     
-    
+
     }
   }
 
@@ -48,7 +44,6 @@ function Table({ columns, data }) {
     {
       columns,
       data,
-
       disableMultiSort: true,
     },
 
@@ -59,7 +54,8 @@ function Table({ columns, data }) {
   return (
     <>
       <div className="wrap-show-entries">
-        <p>Show</p>{" "}
+
+        <div className="dropdown-entries"><p>Show</p>{" "}
         <select
           value={pageSize}
           onChange={(e) => {
@@ -72,7 +68,8 @@ function Table({ columns, data }) {
             </option>
           ))}
         </select>{" "}
-        <p>Entries</p>
+        <p>Entries</p></div>
+        
         <div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {"<<"}
@@ -145,39 +142,6 @@ function Table({ columns, data }) {
         </tbody>
       </table>
 
-      {/* <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>{" "}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {"<"}
-        </button>
-        <span>
-          {" "}
-          Go to page:{" "}
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              gotoPage(page);
-            }}
-            style={{ width: "100px" }}
-          />
-        </span>{" "}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {">"}
-        </button>{" "}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
-        </button>{" "}
-        <span>
-          Page{" "}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
-        </span>
-      </div> */}
     </>
   );
 }
@@ -251,7 +215,7 @@ function TableEmployeesLib() {
 
   return (
     
-    ArrayUserSelector.userArray.length === 0  ? <p className="wrap-no-user">No user in database</p> : 
+    ArrayUserSelector.userArray.length === 0  ? <p className="wrap-no-user">No data available in table</p> : 
     <>
     <div className="input-search-table">
     <p className="search-table">Search:</p>
@@ -264,10 +228,15 @@ function TableEmployeesLib() {
         <Table
           columns={columns}
           data={arrayFilters}
-          // fetchData={fetchData}
-        />}
+       
+        />
+         } 
+
       </Styles>
+      <p className="result-table">{arrayFilters.length}  results out of  {ArrayUserSelector.userArray.length} total entries </p>
     </div>
+
+
     </>
   );
 }
