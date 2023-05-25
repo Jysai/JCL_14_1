@@ -15,14 +15,12 @@ node --version
 
 ------------------------------------------------------------------------------
 
-### Frontend
+## Install dependencies
+1. Git clone: https://github.com/Jysai/JeanClaudeLIMOUSIN_14_14042022.git
+2. Open your terminal
+3. npm install
 
-1. Open your terminal
-
-# Install dependencies
-npm install
-
-# Start local 
+### Start local 
 npm run start
 
 The project should now be running at http://locahost:3000/
