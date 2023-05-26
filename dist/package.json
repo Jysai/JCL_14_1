@@ -1,0 +1,12 @@
+{
+    "name": "@jysai/modal",
+    "version": "1.0.6",
+    "author": "Jysai",
+    "license": "ISC",
+    "keywords": [
+        "reactjs",
+        "component",
+        "modal"
+      ],
+    "description": "A simple MODAL for a ReactJs component"
+  }
