@@ -2,6 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, userInfos } from '../feature/userSlice';
 
+/**
+ * React Component's SelectDepartements
+ * @returns An Html element to select the employee's department from a drop-down menu
+*/
 const SelectDepartements = () => {
 
   const departments = [
@@ -17,6 +21,11 @@ const SelectDepartements = () => {
 
   const dispatch = useDispatch();
 
+     /**
+ * Function onChange Event
+ * @param {e} EventListener
+ * @returns Select the department, and send to the Reducer with Redux's Dispatch
+ */
   const SelectDepartement = (e) => {
     const data = {
       ...user,

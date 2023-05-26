@@ -2,6 +2,10 @@ import { React } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, userInfos } from "../feature/userSlice";
 
+/**
+ * React Component's SelectState
+ * @returns An Html element to select the employee's state from a drop-down menu
+*/
 const SelectStates = () => {
   const states = [
     {
@@ -245,7 +249,11 @@ const SelectStates = () => {
   const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
-
+       /**
+ * Function onChange Event
+ * @param {e} EventListener
+ * @returns Select the state, and send to the Reducer with Redux's Dispatch
+ */
   const selectState = (e) => {
     const data = {
       ...user,
@@ -258,10 +266,8 @@ const SelectStates = () => {
     <div className="dropdown">
       <select className="dropdown-menu " onChange={selectState}  >
     
-
-
       <option hidden>Please select</option>
-          
+         
 
           {states.length > 0 &&
               states.map((state, index) =>  

@@ -5,6 +5,10 @@ import Modal from "../components/Modal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTableColumns } from '@fortawesome/free-solid-svg-icons'
 
+/**
+ * React page's homme
+ * @returns Element for home page
+ */
 const Home = () => {
   return (
     <div className="form-home">

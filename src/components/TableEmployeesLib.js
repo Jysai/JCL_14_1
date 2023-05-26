@@ -53,58 +53,65 @@ function Table({ columns, data }) {
 
   return (
     <>
+      {/* Allows you to display the number of elements in a page */}
       <div className="wrap-show-entries">
-
-        <div className="dropdown-entries"><p>Show</p>{" "}
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[10, 20, 50, 100].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              {pageSize}
-            </option>
-          ))}
-        </select>{" "}
-        <p>Entries</p></div>
-        
-        <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>{" "}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {"<"}
-        </button>
-        <span>
-          {" "}
-          Go to page:{" "}
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
+        <div className="dropdown-entries">
+          <p>Show</p>{" "}
+          <select
+            value={pageSize}
             onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              gotoPage(page);
+              setPageSize(Number(e.target.value));
             }}
-            style={{ width: "100px" }}
-          />
-        </span>{" "}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {">"}
-        </button>{" "}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
-        </button>{" "}
-        <span>
-          Page{" "}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
-        </span>
-      </div>
+          >
+            {[10, 20, 50, 100].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                {pageSize}
+              </option>
+            ))}
+          </select>{" "}
+          <p>Entries</p>
+        </div>
+
+        {/* Allows you to go to the previous or next page*/}
+        <div className="pagination">
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+            {"<<"}
+          </button>{" "}
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            {"<"}
+          </button>
+          <span>
+            {" "}
+            Go to page:{" "}
+            <input
+              type="number"
+              defaultValue={pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                gotoPage(page);
+              }}
+              style={{ width: "100px" }}
+            />
+          </span>{" "}
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            {">"}
+          </button>{" "}
+          <button
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
+            {">>"}
+          </button>{" "}
+          <span>
+            Page{" "}
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>{" "}
+          </span>
+        </div>
       </div>
 
+      {/* Allows you to sort from A to Z when you click on the column header */}
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -126,6 +133,8 @@ function Table({ columns, data }) {
             </tr>
           ))}
         </thead>
+
+        {/* Displays pages */}
         <tbody {...getTableBodyProps()}>
           {page.map((row) => {
             prepareRow(row);
@@ -141,7 +150,6 @@ function Table({ columns, data }) {
           })}
         </tbody>
       </table>
-
     </>
   );
 }
@@ -155,6 +163,7 @@ function TableEmployeesLib() {
   const onChange = (e) => setText(inputEl.current.value);
   const arrayFilters = [];
 
+  /* Search engine */
   ArrayUserSelector.userArray.forEach((element) => {
     if (
       element.firstName.toLowerCase().match(text.toLowerCase()) ||
@@ -213,30 +222,27 @@ function TableEmployeesLib() {
     []
   );
 
-  return (
-    
-    ArrayUserSelector.userArray.length === 0  ? <p className="wrap-no-user">No data available in table</p> : 
+  return ArrayUserSelector.userArray.length === 0 ? (
+    <p className="wrap-no-user">No data available in table</p>
+  ) : (
     <>
-    <div className="input-search-table">
-    <p className="search-table">Search:</p>
-    <input ref={inputEl} onChange={onChange}></input>
-  </div>
+      <div className="input-search-table">
+        <p className="search-table">Search:</p>
+        <input ref={inputEl} onChange={onChange}></input>
+      </div>
       <div className="wrap-table">
-     
-      <Styles>
-         {arrayFilters.length === 0 ? <p className="wrap-no-user">No match</p> : 
-        <Table
-          columns={columns}
-          data={arrayFilters}
-       
-        />
-         } 
-
-      </Styles>
-      <p className="result-table">{arrayFilters.length}  results out of  {ArrayUserSelector.userArray.length} total entries </p>
-    </div>
-
-
+        <Styles>
+          {arrayFilters.length === 0 ? (
+            <p className="wrap-no-user">No match</p>
+          ) : (
+            <Table columns={columns} data={arrayFilters} />
+          )}
+        </Styles>
+        <p className="result-table">
+          {arrayFilters.length} results out of{" "}
+          {ArrayUserSelector.userArray.length} total entries{" "}
+        </p>
+      </div>
     </>
   );
 }

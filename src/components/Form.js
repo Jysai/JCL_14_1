@@ -10,6 +10,10 @@ import SelectStates from "./SelectStates";
 import { openModal } from "../feature/modalSlice";
 import { DatePicker } from "@jysai/datepicker"
 
+/**
+ * React Component's Form
+ * @returns An Html element form, to enter the employee's information
+*/
 const Form = () => {
 
   const firstNameInput = useRef();
@@ -22,6 +26,10 @@ const Form = () => {
 
   const dispatch = useDispatch()
 
+    /**
+ * Function onClick
+ * @returns Retrieve information and send to the Reducer with Redux's Dispatch and open a modal
+ */
   const saveEmployee = () => {
 
  
@@ -53,7 +61,9 @@ const Form = () => {
 
           <DateBirthPicker />
           <DateStartPicker/>
-          {/* <DatePicker/> */}
+          <DatePicker/>
+
+
         
         </div>
         <fieldset className="address" >
