@@ -8,7 +8,8 @@ import DateStartPicker from "./DateStartPicker";
 import SelectDepartements from "./SelectDepartements";
 import SelectStates from "./SelectStates";
 import { openModal } from "../feature/modalSlice";
-import { DatePicker } from "@jysai/datepicker"
+
+
 
 /**
  * React Component's Form
@@ -32,7 +33,6 @@ const Form = () => {
  */
   const saveEmployee = () => {
 
- 
     const data = {
       ...user,
       firstName: firstNameInput.current.value,
@@ -61,7 +61,6 @@ const Form = () => {
 
           <DateBirthPicker />
           <DateStartPicker/>
-          <DatePicker/>
 
 
         
