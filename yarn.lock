@@ -1600,15 +1600,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@jysai/datepicker@^0.1.4":
-  "integrity" "sha512-ns5s6DT9epwmEczL4f1KXDX+rOrbXLsF9tqKKtOTwJrijDGp2vRJrGIP1YcR5oDj+pTanxgps2ANvmiNJCa6WA=="
-  "resolved" "https://npm.pkg.github.com/download/@jysai/datepicker/0.1.4/7d837b3d4e72e9b920b489dad3f567510c0e65b2"
-  "version" "0.1.4"
-
-"@jysai/modal@^0.1.2":
-  "integrity" "sha512-68c+KOgZF/CKObtUMuUQEISovBGZFxqB1jVd00ABkSc5LAQqyYAsTBZAIONkYnb1ooeoDCisT0/W6t8hTSrG/Q=="
-  "resolved" "https://npm.pkg.github.com/download/@jysai/modal/0.1.2/65228eb6151255567d3bb4efb86a58b4d84a7410"
-  "version" "0.1.2"
+"@jysai/modal@^1.0.4":
+  "integrity" "sha512-/wNVCM9S/IDfjw4hdWDXnudm8uVVMHKX99xp24Yk3JMatTOI6bF9pxgT4yEEgkCT4rmn5WE9W9B6PBqcqjKw8w=="
+  "resolved" "https://npm.pkg.github.com/download/@jysai/modal/1.0.4/6d225d7d67006adf30886ad29f4c973b578e9d3d"
+  "version" "1.0.4"
 
 "@leichtgewicht/ip-codec@^2.0.1":
   "integrity" "sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A=="
