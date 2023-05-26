@@ -1600,11 +1600,6 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@jysai/modal@^1.0.4":
-  "integrity" "sha512-/wNVCM9S/IDfjw4hdWDXnudm8uVVMHKX99xp24Yk3JMatTOI6bF9pxgT4yEEgkCT4rmn5WE9W9B6PBqcqjKw8w=="
-  "resolved" "https://npm.pkg.github.com/download/@jysai/modal/1.0.4/6d225d7d67006adf30886ad29f4c973b578e9d3d"
-  "version" "1.0.4"
-
 "@leichtgewicht/ip-codec@^2.0.1":
   "integrity" "sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A=="
   "resolved" "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz"

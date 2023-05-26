@@ -8,7 +8,7 @@ import DateStartPicker from "./DateStartPicker";
 import SelectDepartements from "./SelectDepartements";
 import SelectStates from "./SelectStates";
 import { openModal } from "../feature/modalSlice";
-import { Modal } from "@jysai/modal";
+
 
 /**
  * React Component's Form
@@ -68,7 +68,7 @@ const Form = () => {
 
           <DateBirthPicker />
           <DateStartPicker />
-          <Modal openButton="Open" message="The message" closeButton="Close" />
+        
         </div>
         <fieldset className="address">
           <legend>Address</legend>
